@@ -1,10 +1,14 @@
+const chai = require('chai');
+const expect = chai.expect;
 const request = require('supertest');
 const app = require('./Server'); 
-describe('GET /', () => {
-    it('should respond with "hello world"', async () => {
-        const response = await request(app).get('/');
-       
-        expect(response.status).toBe(200);
-        expect(response.text).toBe('hello world');
-    });
+
+describe('GET /', function() {
+  it('should respond with "hello world"', function(done) {
+    request(app)
+      .get('/')
+      .expect(200)
+      .expect('hello world')
+      .end(done);
+  });
 });
